@@ -423,7 +423,7 @@ function createLogo(index) {
   // Get center position and create exclusion zone around buckets
   const centerX = window.innerWidth / 2;
   const centerY = window.innerHeight / 2;
-  const exclusionZone = 300; // Radius around center to avoid
+  const exclusionZone = 350; // Larger radius around center to avoid buckets area
   
   // Define no-go zones for UI elements
   const bottomUIZone = {
@@ -431,6 +431,14 @@ function createLogo(index) {
     y: window.innerHeight - 120, // Bottom 120px for timer/score bar
     width: window.innerWidth,
     height: 120
+  };
+  
+  // Define buckets area exclusion zone (larger area around center)
+  const bucketsZone = {
+    x: centerX - 200, // 200px left of center
+    y: centerY - 150, // 150px above center
+    width: 400,       // 400px wide
+    height: 300       // 300px tall
   };
   
   let x, y;
@@ -442,7 +450,9 @@ function createLogo(index) {
   } while (
     (Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2) < exclusionZone || 
      (x >= bottomUIZone.x && x <= bottomUIZone.x + bottomUIZone.width &&
-      y >= bottomUIZone.y && y <= bottomUIZone.y + bottomUIZone.height)) && 
+      y >= bottomUIZone.y && y <= bottomUIZone.y + bottomUIZone.height) ||
+     (x >= bucketsZone.x && x <= bucketsZone.x + bucketsZone.width &&
+      y >= bucketsZone.y && y <= bucketsZone.y + bucketsZone.height)) && 
     attempts < 50
   );
   
@@ -553,8 +563,48 @@ function handleDragEnd(e) {
     // Keep logo within bounds
     const maxX = logoArea.offsetWidth - 80;
     const maxY = logoArea.offsetHeight - 80;
-    logoData.x = Math.max(0, Math.min(newX, maxX));
-    logoData.y = Math.max(0, Math.min(newY, maxY));
+    
+    // Check if position would be in buckets area
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+    const bucketsZone = {
+      x: centerX - 200,
+      y: centerY - 150,
+      width: 400,
+      height: 300
+    };
+    
+    let finalX = Math.max(0, Math.min(newX, maxX));
+    let finalY = Math.max(0, Math.min(newY, maxY));
+    
+    // If logo would be in buckets area, move it away
+    if (finalX >= bucketsZone.x && finalX <= bucketsZone.x + bucketsZone.width &&
+        finalY >= bucketsZone.y && finalY <= bucketsZone.y + bucketsZone.height) {
+      // Push logo to nearest edge of buckets zone
+      const distToLeft = Math.abs(finalX - bucketsZone.x);
+      const distToRight = Math.abs(finalX - (bucketsZone.x + bucketsZone.width));
+      const distToTop = Math.abs(finalY - bucketsZone.y);
+      const distToBottom = Math.abs(finalY - (bucketsZone.y + bucketsZone.height));
+      
+      const minDist = Math.min(distToLeft, distToRight, distToTop, distToBottom);
+      
+      if (minDist === distToLeft) {
+        finalX = bucketsZone.x - 90; // 10px margin plus logo width
+      } else if (minDist === distToRight) {
+        finalX = bucketsZone.x + bucketsZone.width + 10;
+      } else if (minDist === distToTop) {
+        finalY = bucketsZone.y - 90;
+      } else {
+        finalY = bucketsZone.y + bucketsZone.height + 10;
+      }
+      
+      // Ensure still within screen bounds
+      finalX = Math.max(0, Math.min(finalX, maxX));
+      finalY = Math.max(0, Math.min(finalY, maxY));
+    }
+    
+    logoData.x = finalX;
+    logoData.y = finalY;
     
     // Update element position
     e.target.style.left = logoData.x + 'px';

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logo Sort Challenge</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      background: white;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+    .game-container {
+      width: 100vw;
+      height: 100vh;
+      background: transparent;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .top-bar {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      padding: 10px 20px;
+    }
+    .timer, .score {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #2d3a4b;
+    }
+    .logo-area {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 1;
+    }
+    .logo-img {
+      width: 80px;
+      height: 80px;
+      cursor: grab;
+      transition: transform 0.2s;
+      position: absolute;
+    }
+    .logo-img:hover {
+      transform: scale(1.05);
+      z-index: 100;
+    }
+    .logo-img:active {
+      cursor: grabbing;
+      z-index: 100;
+    }
+    .buckets {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 40px;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    }
+    .bucket {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      user-select: none;
+      transition: transform 0.2s;
+      padding: 15px;
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.8);
+      border: 2px solid transparent;
+    }
+    .bucket-logo {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .bucket.drag-over {
+      border-color: #3b82f6;
+      background: rgba(59, 130, 246, 0.1);
+    }
+    .bucket.drag-over .bucket-logo {
+      transform: scale(1.1);
+    }
+    .bucket-label {
+      display: none;
+    }
+    .game-over {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      font-size: 1.3rem;
+      color: #2d3a4b;
+      font-weight: 700;
+    }
+    .game-over-content {
+      background: rgba(255, 255, 255, 0.98);
+      padding: 40px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      max-width: 90vw;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .play-again-btn {
+      margin-top: 18px;
+      padding: 10px 28px;
+      background: #3b82f6;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(59,130,246,0.08);
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    .play-again-btn:hover {
+      background: #2563eb;
+      box-shadow: 0 4px 16px rgba(59,130,246,0.16);
+    }
+    @media (max-width: 700px) {
+      .game-container {
+        max-width: 98vw;
+        padding: 10px 2vw 18px 2vw;
+      }
+      .buckets {
+        flex-direction: column;
+        gap: 14px;
+      }
+      .bucket {
+        min-width: 90px;
+        min-height: 70px;
+        font-size: 0.98rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="game-container">
+    <div class="top-bar">
+      <div class="timer" id="timer">Time: 0:00</div>
+      <div class="score" id="score">Score: 0</div>
+    </div>
+    <div class="logo-area" id="logo-area">
+      <!-- Logo will be injected here -->
+    </div>
+    <div class="buckets">
+      <div class="bucket" data-league="NFL" id="bucket-nfl">
+        <img src="Logos/NFL/_NFL_logo.png" alt="NFL" class="bucket-logo">
+      </div>
+      <div class="bucket" data-league="NBA" id="bucket-nba">
+        <img src="Logos/NBA/_NBA_logo.png" alt="NBA" class="bucket-logo">
+      </div>
+      <div class="bucket" data-league="MLB" id="bucket-mlb">
+        <img src="Logos/MLB/_MLB_logo.png" alt="MLB" class="bucket-logo">
+      </div>
+      <div class="bucket" data-league="NCAA" id="bucket-ncaa">
+        <img src="Logos/NCAA/_NCAA_logo.png" alt="NCAA" class="bucket-logo">
+      </div>
+    </div>
+    <div class="game-over" id="game-over" style="display:none;">
+      <div class="game-over-content">
+        <div id="game-over-message">Game Over!</div>
+        <div id="final-score" style="margin-top:10px;"></div>
+        <button class="play-again-btn" id="play-again-btn">Play Again</button>
+      </div>
+    </div>
+  </div>
+  <script src="game.js"></script>
+</body>
+</html>

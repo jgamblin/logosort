@@ -379,7 +379,7 @@ function endGame() {
   const finalScore = highScoreData.finalScore;
   
   let scoreText = `Final Score: ${finalScore.toLocaleString()} points<br>`;
-  scoreText += `Correct: ${correctAnswers}/${totalAnswers}`;
+  scoreText += `Correct: ${correctAnswers}/${teams.length}`;
   if (totalAnswers > 0) {
     scoreText += ` in ${formatTime(timeElapsed)}`;
   }

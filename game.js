@@ -615,6 +615,113 @@ function handleMobileBucketClick(bucketLeague) {
   }
 }
 
+// Mobile game functionality
+let mobileLogos = [];
+let currentMobileLogoIndex = 0;
+
+// Check if mobile device
+function checkMobileDevice() {
+  return window.innerWidth <= 700;
+}
+
+// Update instructions based on device
+function updateInstructions() {
+  const instructionsText = document.getElementById('instructions-text');
+  if (checkMobileDevice()) {
+    instructionsText.innerHTML = `
+      • Tap the correct league bucket for each team logo<br>
+      • 6 leagues: NFL, NBA, MLB, MLS, NHL, and EPL<br>
+      • One logo at a time will be shown<br>
+      • Get points for correct placements<br>
+      • Race against the clock!
+    `;
+  } else {
+    instructionsText.innerHTML = `
+      • Drag and drop team logos into their correct league buckets<br>
+      • 6 leagues: NFL, NBA, MLB, MLS, NHL, and EPL<br>
+      • All 176 logos will appear on screen at once<br>
+      • Get points for correct placements<br>
+      • Race against the clock!
+    `;
+  }
+}
+
+// Load mobile game
+function loadMobileGame() {
+  const mobileCurrentLogo = document.getElementById('mobile-current-logo');
+  const mobileBuckets = document.querySelectorAll('.mobile-bucket');
+  
+  mobileLogos = shuffleArray([...logos]);
+  currentMobileLogoIndex = 0;
+  
+  // Show first logo
+  showCurrentMobileLogo();
+  
+  // Add click handlers to mobile buckets
+  mobileBuckets.forEach(bucket => {
+    bucket.addEventListener('click', handleMobileBucketClick);
+  });
+}
+
+// Show current mobile logo
+function showCurrentMobileLogo() {
+  if (currentMobileLogoIndex >= mobileLogos.length) {
+    endGame();
+    return;
+  }
+  
+  const currentLogo = mobileLogos[currentMobileLogoIndex];
+  const mobileCurrentLogo = document.getElementById('mobile-current-logo');
+  const mobileLogoDisplay = document.getElementById('mobile-logo-display');
+  const mobileTeamName = document.getElementById('mobile-team-name');
+  
+  mobileLogoDisplay.src = currentLogo.src;
+  mobileLogoDisplay.alt = currentLogo.name;
+  mobileTeamName.textContent = currentLogo.name;
+  mobileCurrentLogo.style.display = 'block';
+}
+
+// Handle mobile bucket click
+function handleMobileBucketClick(event) {
+  const bucket = event.currentTarget;
+  const selectedLeague = bucket.dataset.league;
+  const currentLogo = mobileLogos[currentMobileLogoIndex];
+  
+  if (selectedLeague === currentLogo.league) {
+    // Correct answer
+    score += 10;
+    updateScore();
+    
+    // Visual feedback
+    bucket.style.backgroundColor = 'rgba(34, 197, 94, 0.2)';
+    bucket.style.borderColor = '#22c55e';
+    
+    setTimeout(() => {
+      bucket.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+      bucket.style.borderColor = 'transparent';
+    }, 500);
+  } else {
+    // Wrong answer
+    score = Math.max(0, score - 5);
+    updateScore();
+    
+    // Visual feedback
+    bucket.style.backgroundColor = 'rgba(239, 68, 68, 0.2)';
+    bucket.style.borderColor = '#ef4444';
+    
+    setTimeout(() => {
+      bucket.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+      bucket.style.borderColor = 'transparent';
+    }, 500);
+  }
+  
+  // Move to next logo
+  currentMobileLogoIndex++;
+  setTimeout(() => {
+    showCurrentMobileLogo();
+  }, 300);
+}
+
 // --- Initialization ---
 function initializeGame() {
   // Get DOM elements
@@ -719,14 +826,27 @@ document.addEventListener('DOMContentLoaded', function() {
   const instructionsOverlay = document.getElementById('instructions-overlay');
   const startGameBtn = document.getElementById('start-game-btn');
   
+  // Update instructions based on device
+  updateInstructions();
+  
   // Show instructions overlay on page load
   instructionsOverlay.style.display = 'flex';
   
   // Start game when button is clicked
   startGameBtn.addEventListener('click', function() {
     instructionsOverlay.style.display = 'none';
-    initializeGame();
+    
+    if (checkMobileDevice()) {
+      loadMobileGame();
+    } else {
+      loadGame();
+    }
+    
+    startTimer();
   });
+
+  // Update instructions on window resize
+  window.addEventListener('resize', updateInstructions);
 });
 
 // Initialize when DOM is loaded

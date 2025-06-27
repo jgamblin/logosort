@@ -193,6 +193,8 @@ let currentTeam = null;
 let gameTimer = null;
 let usedTeams = [];
 let activeLogos = [];
+let isMobile = false;
+let currentLogoIndex = 0;
 const TARGET_SCORE = 100;
 
 // --- High Score Management ---
@@ -332,6 +334,7 @@ function displayLeaderboard() {
 // --- DOM Elements ---
 let logoArea, timerElement, scoreElement, gameOverElement;
 let gameOverMessage, finalScoreElement, playAgainBtn, buckets;
+let mobileCurrentLogo, mobileLogoDisplay, mobileTeamName, mobileBuckets;
 
 // --- Game Functions ---
 function startGame() {
@@ -342,9 +345,18 @@ function startGame() {
   timeElapsed = 0;
   usedTeams = [];
   activeLogos = [];
+  currentLogoIndex = 0;
   gameOverElement.style.display = 'none';
   updateDisplay();
-  populateLogoStack();
+  
+  // Check if mobile
+  isMobile = window.innerWidth <= 700;
+  
+  if (isMobile) {
+    startMobileGame();
+  } else {
+    populateLogoStack();
+  }
   
   gameTimer = setInterval(() => {
     timeElapsed++;
@@ -563,6 +575,46 @@ function handleWrongAnswer() {
   // Could add visual feedback here
 }
 
+// --- Mobile Game Functions ---
+function startMobileGame() {
+  // Shuffle all teams for mobile
+  activeLogos = shuffleArray([...teams]);
+  currentLogoIndex = 0;
+  showNextMobileLogo();
+}
+
+function showNextMobileLogo() {
+  if (currentLogoIndex >= activeLogos.length) {
+    // All logos completed - player wins!
+    endGame();
+    return;
+  }
+  
+  currentTeam = activeLogos[currentLogoIndex];
+  mobileLogoDisplay.src = currentTeam.logo;
+  mobileLogoDisplay.alt = currentTeam.name;
+  mobileTeamName.textContent = currentTeam.name;
+  mobileCurrentLogo.style.display = 'block';
+}
+
+function handleMobileBucketClick(bucketLeague) {
+  if (!gameRunning || !currentTeam) return;
+  
+  totalAnswers++;
+  
+  if (bucketLeague === currentTeam.league) {
+    // Correct answer
+    score++;
+    correctAnswers++;
+    updateDisplay();
+    currentLogoIndex++;
+    showNextMobileLogo();
+  } else {
+    // Wrong answer - end the game immediately
+    endGame();
+  }
+}
+
 // --- Initialization ---
 function initializeGame() {
   // Get DOM elements
@@ -574,6 +626,12 @@ function initializeGame() {
   finalScoreElement = document.getElementById('final-score');
   playAgainBtn = document.getElementById('play-again-btn');
   buckets = document.querySelectorAll('.bucket');
+
+  // Mobile elements
+  mobileCurrentLogo = document.getElementById('mobile-current-logo');
+  mobileLogoDisplay = document.getElementById('mobile-logo-display');
+  mobileTeamName = document.getElementById('mobile-team-name');
+  mobileBuckets = document.querySelectorAll('.mobile-bucket');
 
   // Ensure all elements are found
   if (!logoArea || !timerElement || !scoreElement || !gameOverElement || 
@@ -624,7 +682,7 @@ function initializeGame() {
     });
 
     bucket.addEventListener('click', () => {
-      if (!gameRunning || !currentTeam) return;
+      if (!gameRunning || !currentTeam || isMobile) return;
       
       const bucketLeague = bucket.dataset.league;
       if (bucketLeague === currentTeam.league) {
@@ -634,6 +692,15 @@ function initializeGame() {
         totalAnswers++;
         endGame();
       }
+    });
+  });
+
+  // Set up mobile bucket event listeners
+  mobileBuckets.forEach(bucket => {
+    bucket.addEventListener('click', () => {
+      if (!gameRunning) return;
+      const bucketLeague = bucket.dataset.league;
+      handleMobileBucketClick(bucketLeague);
     });
   });
 
@@ -647,12 +714,6 @@ function initializeGame() {
   startGame();
 }
 
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-  initializeHighScores();
-  initializeGame();
-});
-
 // Instructions overlay functionality
 document.addEventListener('DOMContentLoaded', function() {
   const instructionsOverlay = document.getElementById('instructions-overlay');
@@ -664,9 +725,14 @@ document.addEventListener('DOMContentLoaded', function() {
   // Start game when button is clicked
   startGameBtn.addEventListener('click', function() {
     instructionsOverlay.style.display = 'none';
-    loadGame();
-    startTimer();
+    initializeGame();
   });
+});
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  initializeHighScores();
+  // Don't auto-start the game - wait for instructions overlay
 });
 
 // --- Utility Functions ---

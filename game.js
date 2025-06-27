@@ -379,7 +379,10 @@ function endGame() {
   const finalScore = highScoreData.finalScore;
   
   let scoreText = `Final Score: ${finalScore.toLocaleString()} points<br>`;
-  scoreText += `Correct: ${correctAnswers}/${totalAnswers} in ${formatTime(timeElapsed)}`;
+  scoreText += `Correct: ${correctAnswers}/${totalAnswers}`;
+  if (totalAnswers > 0) {
+    scoreText += ` in ${formatTime(timeElapsed)}`;
+  }
   
   if (highScoreData.rank <= 10) {
     scoreText += `<br>🎉 New High Score! Rank #${highScoreData.rank}`;
@@ -663,12 +666,11 @@ function handleMobileBucketClick(event) {
   const selectedLeague = bucket.dataset.league;
   const currentLogo = mobileLogos[currentMobileLogoIndex];
   
-  totalAnswers++;
-  
   if (selectedLeague === currentLogo.league) {
     // Correct answer
     score++;
     correctAnswers++;
+    totalAnswers++;
     updateDisplay();
     
     // Visual feedback
@@ -685,6 +687,7 @@ function handleMobileBucketClick(event) {
     }, 500);
   } else {
     // Wrong answer - end game immediately
+    totalAnswers++;
     endGame();
   }
 }

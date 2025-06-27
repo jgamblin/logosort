@@ -629,9 +629,9 @@ function updateInstructions() {
   const instructionsText = document.getElementById('instructions-text');
   if (checkMobileDevice()) {
     instructionsText.innerHTML = `
-      • Tap the correct league bucket for each team logo<br>
-      • 6 leagues: NFL, NBA, MLB, MLS, NHL, and EPL<br>
-      • One logo at a time will be shown<br>
+      • Click the correct league for each team logo<br>
+      • 4 randomly selected leagues will be shown<br>
+      • One logo at a time will be displayed<br>
       • Get points for correct placements<br>
       • Race against the clock!
     `;
@@ -649,18 +649,35 @@ function updateInstructions() {
 // Load mobile game
 function loadMobileGame() {
   const mobileCurrentLogo = document.getElementById('mobile-current-logo');
-  const mobileBuckets = document.querySelectorAll('.mobile-bucket');
+  const mobileBucketsContainer = document.getElementById('mobile-buckets');
   
-  mobileLogos = shuffleArray([...logos]);
+  // Select 4 random leagues
+  const allLeagues = ['NFL', 'NBA', 'MLB', 'MLS', 'NHL', 'EPL'];
+  const selectedLeagues = shuffleArray([...allLeagues]).slice(0, 4);
+  
+  // Create mobile buckets for selected leagues
+  mobileBucketsContainer.innerHTML = '';
+  selectedLeagues.forEach(league => {
+    const bucket = document.createElement('div');
+    bucket.className = 'mobile-bucket';
+    bucket.dataset.league = league;
+    bucket.id = `mobile-bucket-${league.toLowerCase()}`;
+    
+    bucket.innerHTML = `
+      <img src="Logos/leagues/${league.toLowerCase()}.svg" alt="${league}" class="mobile-bucket-logo">
+      <div class="mobile-bucket-label">${league}</div>
+    `;
+    
+    bucket.addEventListener('click', handleMobileBucketClick);
+    mobileBucketsContainer.appendChild(bucket);
+  });
+  
+  // Filter logos to only include teams from selected leagues
+  mobileLogos = shuffleArray(logos.filter(logo => selectedLeagues.includes(logo.league)));
   currentMobileLogoIndex = 0;
   
   // Show first logo
   showCurrentMobileLogo();
-  
-  // Add click handlers to mobile buckets
-  mobileBuckets.forEach(bucket => {
-    bucket.addEventListener('click', handleMobileBucketClick);
-  });
 }
 
 // Show current mobile logo

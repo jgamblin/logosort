@@ -238,27 +238,28 @@
       transform: translate(-50%, -50%);
       display: grid;
       grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr 1fr;
-      gap: 15px;
+      grid-template-rows: 1fr 1fr;
+      gap: 20px;
       z-index: 100;
       background: rgba(255, 255, 255, 0.95);
-      padding: 20px;
+      padding: 25px;
       border-radius: 20px;
       backdrop-filter: blur(10px);
       box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      width: 280px;
+      height: 280px;
     }
     .mobile-bucket {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 15px;
+      padding: 10px;
       border-radius: 15px;
       background: rgba(255, 255, 255, 0.8);
       border: 2px solid transparent;
       cursor: pointer;
       transition: all 0.2s;
-      min-height: 80px;
     }
     .mobile-bucket:hover, .mobile-bucket:active {
       border-color: #3b82f6;
@@ -266,15 +267,41 @@
       transform: scale(1.05);
     }
     .mobile-bucket-logo {
-      width: 60px;
-      height: 60px;
+      width: 50px;
+      height: 50px;
       object-fit: contain;
-      margin-bottom: 5px;
+      margin-bottom: 8px;
     }
     .mobile-bucket-label {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       font-weight: 700;
       color: #2d3a4b;
+    }
+    .mobile-current-logo {
+      position: fixed;
+      bottom: 140px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.95);
+      padding: 15px;
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      z-index: 200;
+      max-width: 90vw;
+    }
+    .mobile-logo-display {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto 8px auto;
+    }
+    .mobile-team-name {
+      text-align: center;
+      font-weight: 700;
+      color: #2d3a4b;
+      font-size: 1rem;
     }
     @media (max-width: 700px) {
       .buckets {
@@ -348,31 +375,8 @@
         <img id="mobile-logo-display" class="mobile-logo-display" src="" alt="">
         <div id="mobile-team-name" class="mobile-team-name"></div>
       </div>
-      <div class="mobile-buckets">
-        <div class="mobile-bucket" data-league="NFL" id="mobile-bucket-nfl">
-          <img src="Logos/leagues/nfl.svg" alt="NFL" class="mobile-bucket-logo">
-          <div class="mobile-bucket-label">NFL</div>
-        </div>
-        <div class="mobile-bucket" data-league="NBA" id="mobile-bucket-nba">
-          <img src="Logos/leagues/nba.svg" alt="NBA" class="mobile-bucket-logo">
-          <div class="mobile-bucket-label">NBA</div>
-        </div>
-        <div class="mobile-bucket" data-league="MLB" id="mobile-bucket-mlb">
-          <img src="Logos/leagues/mlb.svg" alt="MLB" class="mobile-bucket-logo">
-          <div class="mobile-bucket-label">MLB</div>
-        </div>
-        <div class="mobile-bucket" data-league="MLS" id="mobile-bucket-mls">
-          <img src="Logos/leagues/mls.svg" alt="MLS" class="mobile-bucket-logo">
-          <div class="mobile-bucket-label">MLS</div>
-        </div>
-        <div class="mobile-bucket" data-league="NHL" id="mobile-bucket-nhl">
-          <img src="Logos/leagues/nhl.svg" alt="NHL" class="mobile-bucket-logo">
-          <div class="mobile-bucket-label">NHL</div>
-        </div>
-        <div class="mobile-bucket" data-league="EPL" id="mobile-bucket-epl">
-          <img src="Logos/leagues/epl.svg" alt="EPL" class="mobile-bucket-logo">
-          <div class="mobile-bucket-label">EPL</div>
-        </div>
+      <div class="mobile-buckets" id="mobile-buckets">
+        <!-- Mobile buckets will be dynamically populated -->
       </div>
     </div>
     <div class="game-over" id="game-over" style="display:none;">

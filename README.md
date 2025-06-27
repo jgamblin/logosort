@@ -1,22 +1,23 @@
 # LogoSort 🏆
 
-A fast-paced web game where you drag and drop sports team logos into their correct league buckets. Test your sports knowledge and reflexes as you sort through 100+ team logos from NFL, NBA, MLB, and NCAA!
+A fast-paced web game where you drag and drop sports team logos into their correct league buckets. Test your sports knowledge and reflexes as you sort through 176+ team logos from NFL, NBA, MLB, MLS, NHL, and EPL!
 
 ## 🎮 How to Play
 
 1. **Objective**: Drag team logos from around the screen into the correct league bucket in the center
-2. **Leagues**: Sort logos into NFL, NBA, MLB, or NCAA buckets
+2. **Leagues**: Sort logos into NFL, NBA, MLB, MLS, NHL, or EPL buckets
 3. **Scoring**: Earn points for each correct placement
 4. **Challenge**: One wrong answer ends the game!
-5. **Goal**: Sort all 100 logos to achieve the ultimate victory
+5. **Goal**: Sort all logos to achieve the ultimate victory
 
 ## 🚀 Features
 
-- **100+ Team Logos**: Includes teams from all major sports leagues
-- **Drag & Drop Interface**: Intuitive gameplay mechanics
+- **176+ Team Logos**: Includes teams from all major sports leagues (NFL, NBA, MLB, MLS, NHL, EPL)
+- **Drag & Drop Interface**: Intuitive gameplay mechanics on desktop
+- **Mobile Optimized**: Touch-friendly interface with 4 random leagues per game
 - **Real-time Scoring**: Track your progress and time
 - **High Score System**: Compete against your best scores with persistent leaderboard
-- **Responsive Design**: Works on desktop and mobile devices
+- **Responsive Design**: Automatically adapts interface for mobile and desktop
 - **No Dependencies**: Pure HTML, CSS, and JavaScript
 
 ## 🏃‍♂️ Quick Start
@@ -39,16 +40,19 @@ logosort/
     ├── NFL/
     ├── NBA/
     ├── MLB/
-    └── NCAA/
+    ├── MLS/
+    ├── NHL/
+    └── EPL/
 ```
 
 ## 🎯 Game Rules
 
+- **Desktop Mode**: All logos appear on screen simultaneously - drag and drop into correct buckets
+- **Mobile Mode**: One logo at a time with 4 randomly selected leagues to choose from
 - **Correct Sort**: +1 point, logo disappears
 - **Wrong Sort**: Game over immediately
-- **Time Bonus**: Longer survival time increases final score
-- **Accuracy Bonus**: Higher accuracy percentage boosts score
-- **Perfect Game**: Sort all 100 logos for maximum points
+- **Time Tracking**: Game tracks survival time for scoring
+- **Perfect Game**: Sort all logos for maximum points
 
 ## 🏆 Scoring System
 
@@ -62,7 +66,7 @@ logosort/
 - **Frontend**: Pure HTML5, CSS3, JavaScript (ES6+)
 - **Storage**: Browser cookies for high score persistence
 - **Compatibility**: Modern browsers with drag-and-drop support
-- **Performance**: Optimized for smooth gameplay with 100 simultaneous elements
+- **Performance**: Optimized for smooth gameplay with 176+ simultaneous elements
 
 ## 🎨 Features
 
@@ -77,14 +81,16 @@ logosort/
 - **NFL**: All 32 teams
 - **NBA**: All 30 teams  
 - **MLB**: All 30 teams
-- **NCAA**: 20 major college programs
+- **MLS**: 22 major teams
+- **NHL**: 31 teams
+- **EPL**: 25 Premier League teams
 
 ## 🔧 Customization
 
 Want to modify the game? Key areas to customize:
 
 - **Add Teams**: Modify the `teams` array in `game.js`
-- **Adjust Difficulty**: Change `STACK_SIZE` constant
+- **Adjust Difficulty**: Change scoring constants or game modes
 - **Scoring**: Modify `calculateFinalScore()` function
 - **Styling**: Update CSS in `index.html`
 

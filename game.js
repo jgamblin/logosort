@@ -394,7 +394,7 @@ function updateDisplay() {
   const minutes = Math.floor(timeElapsed / 60);
   const seconds = timeElapsed % 60;
   timerElement.textContent = `Time: ${minutes}:${seconds.toString().padStart(2, '0')}`;
-  scoreElement.textContent = `Score: ${score}`;
+  scoreElement.textContent = `Correct: ${score}`;
 }
 
 function getRandomTeam(index) {

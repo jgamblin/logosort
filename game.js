@@ -346,6 +346,14 @@ function createLogo(index) {
   const centerY = window.innerHeight / 2;
   const exclusionZone = 300; // Radius around center to avoid
   
+  // Define no-go zones for UI elements
+  const bottomUIZone = {
+    x: 0,
+    y: window.innerHeight - 120, // Bottom 120px for timer/score bar
+    width: window.innerWidth,
+    height: 120
+  };
+  
   let x, y;
   let attempts = 0;
   do {
@@ -353,7 +361,9 @@ function createLogo(index) {
     y = Math.random() * (window.innerHeight - 80);
     attempts++;
   } while (
-    Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2) < exclusionZone && 
+    (Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2) < exclusionZone || 
+     (x >= bottomUIZone.x && x <= bottomUIZone.x + bottomUIZone.width &&
+      y >= bottomUIZone.y && y <= bottomUIZone.y + bottomUIZone.height)) && 
     attempts < 50
   );
   

@@ -208,46 +208,48 @@
     }
     .mobile-current-logo {
       position: fixed;
-      bottom: 120px;
+      bottom: 140px;
       left: 50%;
       transform: translateX(-50%);
       background: rgba(255, 255, 255, 0.95);
-      padding: 20px;
+      padding: 15px;
       border-radius: 15px;
       backdrop-filter: blur(10px);
       box-shadow: 0 8px 32px rgba(0,0,0,0.1);
       z-index: 200;
+      max-width: 90vw;
     }
     .mobile-logo-display {
-      width: 120px;
-      height: 120px;
+      width: 100px;
+      height: 100px;
       object-fit: contain;
       display: block;
-      margin: 0 auto 10px auto;
+      margin: 0 auto 8px auto;
     }
     .mobile-team-name {
       text-align: center;
       font-weight: 700;
       color: #2d3a4b;
-      font-size: 1.1rem;
+      font-size: 1rem;
     }
     .mobile-buckets {
       position: fixed;
-      top: 50%;
+      top: 60px;
       left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translateX(-50%);
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 1fr 1fr;
-      gap: 20px;
+      gap: 15px;
       z-index: 100;
       background: rgba(255, 255, 255, 0.95);
-      padding: 25px;
-      border-radius: 20px;
+      padding: 20px;
+      border-radius: 15px;
       backdrop-filter: blur(10px);
       box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-      width: 280px;
-      height: 280px;
+      width: calc(100vw - 40px);
+      max-width: 340px;
+      height: 240px;
     }
     .mobile-bucket {
       display: flex;
@@ -326,6 +328,70 @@
         font-size: 0.98rem;
       }
     }
+    
+    /* Additional mobile optimizations for smaller screens */
+    @media (max-width: 480px) {
+      .mobile-buckets {
+        top: 40px;
+        padding: 15px;
+        width: calc(100vw - 30px);
+        max-width: 320px;
+        height: 200px;
+        gap: 12px;
+      }
+      
+      .mobile-bucket {
+        padding: 8px;
+        border-radius: 12px;
+      }
+      
+      .mobile-bucket-logo {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 6px;
+      }
+      
+      .mobile-bucket-label {
+        font-size: 0.8rem;
+      }
+      
+      .mobile-current-logo {
+        bottom: 120px;
+        padding: 12px;
+        max-width: 95vw;
+      }
+      
+      .mobile-logo-display {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 6px;
+      }
+      
+      .mobile-team-name {
+        font-size: 0.9rem;
+      }
+      
+      .top-bar {
+        bottom: 15px;
+        left: 15px;
+        right: 15px;
+        padding: 8px 15px;
+      }
+      
+      .timer, .score {
+        font-size: 1.1rem;
+      }
+    }
+    /* Watermark style */
+    .watermark {
+      position: fixed;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.8rem;
+      color: rgba(45, 58, 75, 0.7);
+      pointer-events: none;
+    }
   </style>
 </head>
 <body>
@@ -387,6 +453,12 @@
       </div>
     </div>
   </div>
+
+  <!-- Watermark -->
+  <div class="watermark">
+    An @JGamblin VibeCoded Game
+  </div>
+
   <script src="game.js"></script>
 </body>
 </html>

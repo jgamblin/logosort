@@ -1,0 +1,13 @@
+/* Watermark styles */
+.watermark {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.3);
+  font-family: monospace;
+  z-index: 1000;
+  pointer-events: none;
+  text-align: center;
+}

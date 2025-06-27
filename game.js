@@ -353,7 +353,7 @@ function startGame() {
   isMobile = window.innerWidth <= 700;
   
   if (isMobile) {
-    startMobileGame();
+    loadMobileGame();
   } else {
     populateLogoStack();
   }
@@ -575,46 +575,6 @@ function handleWrongAnswer() {
   // Could add visual feedback here
 }
 
-// --- Mobile Game Functions ---
-function startMobileGame() {
-  // Shuffle all teams for mobile
-  activeLogos = shuffleArray([...teams]);
-  currentLogoIndex = 0;
-  showNextMobileLogo();
-}
-
-function showNextMobileLogo() {
-  if (currentLogoIndex >= activeLogos.length) {
-    // All logos completed - player wins!
-    endGame();
-    return;
-  }
-  
-  currentTeam = activeLogos[currentLogoIndex];
-  mobileLogoDisplay.src = currentTeam.logo;
-  mobileLogoDisplay.alt = currentTeam.name;
-  mobileTeamName.textContent = currentTeam.name;
-  mobileCurrentLogo.style.display = 'block';
-}
-
-function handleMobileBucketClick(bucketLeague) {
-  if (!gameRunning || !currentTeam) return;
-  
-  totalAnswers++;
-  
-  if (bucketLeague === currentTeam.league) {
-    // Correct answer
-    score++;
-    correctAnswers++;
-    updateDisplay();
-    currentLogoIndex++;
-    showNextMobileLogo();
-  } else {
-    // Wrong answer - end the game immediately
-    endGame();
-  }
-}
-
 // Mobile game functionality
 let mobileLogos = [];
 let currentMobileLogoIndex = 0;
@@ -672,8 +632,8 @@ function loadMobileGame() {
     mobileBucketsContainer.appendChild(bucket);
   });
   
-  // Filter logos to only include teams from selected leagues
-  mobileLogos = shuffleArray(logos.filter(logo => selectedLeagues.includes(logo.league)));
+  // Filter teams to only include those from selected leagues
+  mobileLogos = shuffleArray(teams.filter(team => selectedLeagues.includes(team.league)));
   currentMobileLogoIndex = 0;
   
   // Show first logo
@@ -692,7 +652,7 @@ function showCurrentMobileLogo() {
   const mobileLogoDisplay = document.getElementById('mobile-logo-display');
   const mobileTeamName = document.getElementById('mobile-team-name');
   
-  mobileLogoDisplay.src = currentLogo.src;
+  mobileLogoDisplay.src = currentLogo.logo;
   mobileLogoDisplay.alt = currentLogo.name;
   mobileTeamName.textContent = currentLogo.name;
   mobileCurrentLogo.style.display = 'block';
@@ -700,14 +660,19 @@ function showCurrentMobileLogo() {
 
 // Handle mobile bucket click
 function handleMobileBucketClick(event) {
+  if (!gameRunning) return;
+  
   const bucket = event.currentTarget;
   const selectedLeague = bucket.dataset.league;
   const currentLogo = mobileLogos[currentMobileLogoIndex];
   
+  totalAnswers++;
+  
   if (selectedLeague === currentLogo.league) {
     // Correct answer
-    score += 10;
-    updateScore();
+    score++;
+    correctAnswers++;
+    updateDisplay();
     
     // Visual feedback
     bucket.style.backgroundColor = 'rgba(34, 197, 94, 0.2)';
@@ -716,27 +681,15 @@ function handleMobileBucketClick(event) {
     setTimeout(() => {
       bucket.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
       bucket.style.borderColor = 'transparent';
+      
+      // Move to next logo
+      currentMobileLogoIndex++;
+      showCurrentMobileLogo();
     }, 500);
   } else {
-    // Wrong answer
-    score = Math.max(0, score - 5);
-    updateScore();
-    
-    // Visual feedback
-    bucket.style.backgroundColor = 'rgba(239, 68, 68, 0.2)';
-    bucket.style.borderColor = '#ef4444';
-    
-    setTimeout(() => {
-      bucket.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
-      bucket.style.borderColor = 'transparent';
-    }, 500);
+    // Wrong answer - end game immediately
+    endGame();
   }
-  
-  // Move to next logo
-  currentMobileLogoIndex++;
-  setTimeout(() => {
-    showCurrentMobileLogo();
-  }, 300);
 }
 
 // --- Initialization ---
@@ -819,15 +772,6 @@ function initializeGame() {
     });
   });
 
-  // Set up mobile bucket event listeners
-  mobileBuckets.forEach(bucket => {
-    bucket.addEventListener('click', () => {
-      if (!gameRunning) return;
-      const bucketLeague = bucket.dataset.league;
-      handleMobileBucketClick(bucketLeague);
-    });
-  });
-
   // Set up play again button event listener
   playAgainBtn.addEventListener('click', (e) => {
     e.preventDefault();
@@ -853,13 +797,8 @@ document.addEventListener('DOMContentLoaded', function() {
   startGameBtn.addEventListener('click', function() {
     instructionsOverlay.style.display = 'none';
     
-    if (checkMobileDevice()) {
-      loadMobileGame();
-    } else {
-      loadGame();
-    }
-    
-    startTimer();
+    // Initialize the game properly
+    initializeGame();
   });
 
   // Update instructions on window resize

@@ -1,124 +1,186 @@
 // --- Team Data ---
 const teams = [
   // NFL Teams
-  { name: '49Ers', league: 'NFL', logo: 'Logos/NFL/49ers.png' },
-  { name: 'Bears', league: 'NFL', logo: 'Logos/NFL/bears.png' },
-  { name: 'Bengals', league: 'NFL', logo: 'Logos/NFL/bengals.png' },
-  { name: 'Bills', league: 'NFL', logo: 'Logos/NFL/bills.png' },
-  { name: 'Broncos', league: 'NFL', logo: 'Logos/NFL/broncos.png' },
-  { name: 'Browns', league: 'NFL', logo: 'Logos/NFL/browns.png' },
-  { name: 'Buccaneers', league: 'NFL', logo: 'Logos/NFL/buccaneers.png' },
-  { name: 'Cardinals', league: 'NFL', logo: 'Logos/NFL/cardinals.png' },
-  { name: 'Chargers', league: 'NFL', logo: 'Logos/NFL/chargers.png' },
-  { name: 'Chiefs', league: 'NFL', logo: 'Logos/NFL/chiefs.png' },
-  { name: 'Colts', league: 'NFL', logo: 'Logos/NFL/colts.png' },
-  { name: 'Cowboys', league: 'NFL', logo: 'Logos/NFL/cowboys.png' },
-  { name: 'Dolphins', league: 'NFL', logo: 'Logos/NFL/dolphins.png' },
-  { name: 'Eagles', league: 'NFL', logo: 'Logos/NFL/eagles.png' },
-  { name: 'Falcons', league: 'NFL', logo: 'Logos/NFL/falcons.png' },
-  { name: 'Giants', league: 'NFL', logo: 'Logos/NFL/giants.png' },
-  { name: 'Jaguars', league: 'NFL', logo: 'Logos/NFL/jaguars.png' },
-  { name: 'Jets', league: 'NFL', logo: 'Logos/NFL/jets.png' },
-  { name: 'Lions', league: 'NFL', logo: 'Logos/NFL/lions.png' },
-  { name: 'Packers', league: 'NFL', logo: 'Logos/NFL/packers.png' },
-  { name: 'Panthers', league: 'NFL', logo: 'Logos/NFL/panthers.png' },
-  { name: 'Patriots', league: 'NFL', logo: 'Logos/NFL/patriots.png' },
-  { name: 'Raiders', league: 'NFL', logo: 'Logos/NFL/raiders.png' },
-  { name: 'Rams', league: 'NFL', logo: 'Logos/NFL/rams.png' },
-  { name: 'Ravens', league: 'NFL', logo: 'Logos/NFL/ravens.png' },
-  { name: 'Redskins', league: 'NFL', logo: 'Logos/NFL/redskins.png' },
-  { name: 'Saints', league: 'NFL', logo: 'Logos/NFL/saints.png' },
-  { name: 'Seahawks', league: 'NFL', logo: 'Logos/NFL/seahawks.png' },
-  { name: 'Steelers', league: 'NFL', logo: 'Logos/NFL/steelers.png' },
-  { name: 'Texans', league: 'NFL', logo: 'Logos/NFL/texans.png' },
-  { name: 'Titans', league: 'NFL', logo: 'Logos/NFL/titans.png' },
-  { name: 'Vikings', league: 'NFL', logo: 'Logos/NFL/vikings.png' },
+  { name: '49ers', league: 'NFL', logo: 'Logos/nfl/san-francisco-49ers.svg' },
+  { name: 'Bears', league: 'NFL', logo: 'Logos/nfl/chicago-bears.svg' },
+  { name: 'Bengals', league: 'NFL', logo: 'Logos/nfl/cincinnati-bengals.svg' },
+  { name: 'Bills', league: 'NFL', logo: 'Logos/nfl/buffalo-bills.svg' },
+  { name: 'Broncos', league: 'NFL', logo: 'Logos/nfl/denver-broncos.svg' },
+  { name: 'Browns', league: 'NFL', logo: 'Logos/nfl/cleveland-browns.svg' },
+  { name: 'Buccaneers', league: 'NFL', logo: 'Logos/nfl/tampa-bay-buccaneers.svg' },
+  { name: 'Cardinals', league: 'NFL', logo: 'Logos/nfl/arizona-cardinals.svg' },
+  { name: 'Chargers', league: 'NFL', logo: 'Logos/nfl/los-angeles-chargers.svg' },
+  { name: 'Chiefs', league: 'NFL', logo: 'Logos/nfl/kansas-city-chiefs.svg' },
+  { name: 'Colts', league: 'NFL', logo: 'Logos/nfl/indianapolis-colts.svg' },
+  { name: 'Cowboys', league: 'NFL', logo: 'Logos/nfl/dallas-cowboys.svg' },
+  { name: 'Dolphins', league: 'NFL', logo: 'Logos/nfl/miami-dolphins.svg' },
+  { name: 'Eagles', league: 'NFL', logo: 'Logos/nfl/philadelphia-eagles.svg' },
+  { name: 'Falcons', league: 'NFL', logo: 'Logos/nfl/atlanta-falcons.svg' },
+  { name: 'Giants', league: 'NFL', logo: 'Logos/nfl/new-york-giants.svg' },
+  { name: 'Jaguars', league: 'NFL', logo: 'Logos/nfl/jacksonville-jaguars.svg' },
+  { name: 'Jets', league: 'NFL', logo: 'Logos/nfl/new-york-jets.svg' },
+  { name: 'Lions', league: 'NFL', logo: 'Logos/nfl/detroit-lions.svg' },
+  { name: 'Packers', league: 'NFL', logo: 'Logos/nfl/green-bay-packers.svg' },
+  { name: 'Panthers', league: 'NFL', logo: 'Logos/nfl/carolina-panthers.svg' },
+  { name: 'Patriots', league: 'NFL', logo: 'Logos/nfl/new-england-patriots.svg' },
+  { name: 'Raiders', league: 'NFL', logo: 'Logos/nfl/oakland-raiders.svg' },
+  { name: 'Rams', league: 'NFL', logo: 'Logos/nfl/los-angeles-rams.svg' },
+  { name: 'Ravens', league: 'NFL', logo: 'Logos/nfl/baltimore-ravens.svg' },
+  { name: 'Commanders', league: 'NFL', logo: 'Logos/nfl/washington-commanders.svg' },
+  { name: 'Saints', league: 'NFL', logo: 'Logos/nfl/new-orleans-saints.svg' },
+  { name: 'Seahawks', league: 'NFL', logo: 'Logos/nfl/seattle-seahawks.svg' },
+  { name: 'Steelers', league: 'NFL', logo: 'Logos/nfl/pittsburgh-steelers.svg' },
+  { name: 'Texans', league: 'NFL', logo: 'Logos/nfl/houston-texans.svg' },
+  { name: 'Titans', league: 'NFL', logo: 'Logos/nfl/tennessee-titans.svg' },
+  { name: 'Vikings', league: 'NFL', logo: 'Logos/nfl/minnesota-vikings.svg' },
 
   // NBA Teams
-  { name: '76Ers', league: 'NBA', logo: 'Logos/NBA/76ers.png' },
-  { name: 'Bucks', league: 'NBA', logo: 'Logos/NBA/bucks.png' },
-  { name: 'Bulls', league: 'NBA', logo: 'Logos/NBA/bulls.png' },
-  { name: 'Cavaliers', league: 'NBA', logo: 'Logos/NBA/cavaliers.png' },
-  { name: 'Celtics', league: 'NBA', logo: 'Logos/NBA/celtics.png' },
-  { name: 'Clippers', league: 'NBA', logo: 'Logos/NBA/clippers.png' },
-  { name: 'Grizzlies', league: 'NBA', logo: 'Logos/NBA/grizzlies.png' },
-  { name: 'Hawks', league: 'NBA', logo: 'Logos/NBA/hawks.png' },
-  { name: 'Heat', league: 'NBA', logo: 'Logos/NBA/heat.png' },
-  { name: 'Hornets', league: 'NBA', logo: 'Logos/NBA/hornets.png' },
-  { name: 'Jazz', league: 'NBA', logo: 'Logos/NBA/jazz.png' },
-  { name: 'Kings', league: 'NBA', logo: 'Logos/NBA/kings.png' },
-  { name: 'Knicks', league: 'NBA', logo: 'Logos/NBA/knicks.png' },
-  { name: 'Lakers', league: 'NBA', logo: 'Logos/NBA/lakers.png' },
-  { name: 'Magic', league: 'NBA', logo: 'Logos/NBA/magic.png' },
-  { name: 'Mavericks', league: 'NBA', logo: 'Logos/NBA/mavericks.png' },
-  { name: 'Nets', league: 'NBA', logo: 'Logos/NBA/nets.png' },
-  { name: 'Nuggets', league: 'NBA', logo: 'Logos/NBA/nuggets.png' },
-  { name: 'Pacers', league: 'NBA', logo: 'Logos/NBA/pacers.png' },
-  { name: 'Pelicans', league: 'NBA', logo: 'Logos/NBA/pelicans.png' },
-  { name: 'Pistons', league: 'NBA', logo: 'Logos/NBA/pistons.png' },
-  { name: 'Raptors', league: 'NBA', logo: 'Logos/NBA/raptors.png' },
-  { name: 'Rockets', league: 'NBA', logo: 'Logos/NBA/rockets.png' },
-  { name: 'Spurs', league: 'NBA', logo: 'Logos/NBA/spurs.png' },
-  { name: 'Suns', league: 'NBA', logo: 'Logos/NBA/suns.png' },
-  { name: 'Thunder', league: 'NBA', logo: 'Logos/NBA/thunder.png' },
-  { name: 'Timberwolves', league: 'NBA', logo: 'Logos/NBA/timberwolves.png' },
-  { name: 'Trailblazers', league: 'NBA', logo: 'Logos/NBA/trailblazers.png' },
-  { name: 'Warriors', league: 'NBA', logo: 'Logos/NBA/warriors.png' },
-  { name: 'Wizards', league: 'NBA', logo: 'Logos/NBA/wizards.png' },
+  { name: '76ers', league: 'NBA', logo: 'Logos/nba/philadelphia-76ers.svg' },
+  { name: 'Bucks', league: 'NBA', logo: 'Logos/nba/milwaukee-bucks.svg' },
+  { name: 'Bulls', league: 'NBA', logo: 'Logos/nba/chicago-bulls.svg' },
+  { name: 'Cavaliers', league: 'NBA', logo: 'Logos/nba/cleveland-cavaliers.svg' },
+  { name: 'Celtics', league: 'NBA', logo: 'Logos/nba/boston-celtics.svg' },
+  { name: 'Clippers', league: 'NBA', logo: 'Logos/nba/los-angeles-clippers.svg' },
+  { name: 'Grizzlies', league: 'NBA', logo: 'Logos/nba/memphis-grizzlies.svg' },
+  { name: 'Hawks', league: 'NBA', logo: 'Logos/nba/atlanta-hawks.svg' },
+  { name: 'Heat', league: 'NBA', logo: 'Logos/nba/miami-heat.svg' },
+  { name: 'Hornets', league: 'NBA', logo: 'Logos/nba/charlotte-hornets.svg' },
+  { name: 'Jazz', league: 'NBA', logo: 'Logos/nba/utah-jazz.svg' },
+  { name: 'Kings', league: 'NBA', logo: 'Logos/nba/sacramento-kings.svg' },
+  { name: 'Knicks', league: 'NBA', logo: 'Logos/nba/new-york-knicks.svg' },
+  { name: 'Lakers', league: 'NBA', logo: 'Logos/nba/los-angeles-lakers.svg' },
+  { name: 'Magic', league: 'NBA', logo: 'Logos/nba/orlando-magic.svg' },
+  { name: 'Mavericks', league: 'NBA', logo: 'Logos/nba/dallas-mavericks.svg' },
+  { name: 'Nets', league: 'NBA', logo: 'Logos/nba/brooklyn-nets.svg' },
+  { name: 'Nuggets', league: 'NBA', logo: 'Logos/nba/denver-nuggets.svg' },
+  { name: 'Pacers', league: 'NBA', logo: 'Logos/nba/indiana-pacers.svg' },
+  { name: 'Pelicans', league: 'NBA', logo: 'Logos/nba/new-orleans-pelicans.svg' },
+  { name: 'Pistons', league: 'NBA', logo: 'Logos/nba/detroit-pistons.svg' },
+  { name: 'Raptors', league: 'NBA', logo: 'Logos/nba/toronto-raptors.svg' },
+  { name: 'Rockets', league: 'NBA', logo: 'Logos/nba/houston-rockets.svg' },
+  { name: 'Spurs', league: 'NBA', logo: 'Logos/nba/san-antonio-spurs.svg' },
+  { name: 'Suns', league: 'NBA', logo: 'Logos/nba/phoenix-suns.svg' },
+  { name: 'Thunder', league: 'NBA', logo: 'Logos/nba/oklahoma-city-thunder.svg' },
+  { name: 'Timberwolves', league: 'NBA', logo: 'Logos/nba/minnesota-timberwolves.svg' },
+  { name: 'Trail Blazers', league: 'NBA', logo: 'Logos/nba/portland-trail-blazers.svg' },
+  { name: 'Warriors', league: 'NBA', logo: 'Logos/nba/golden-state-warriors.svg' },
+  { name: 'Wizards', league: 'NBA', logo: 'Logos/nba/washington-wizards.svg' },
 
   // MLB Teams
-  { name: 'Angels', league: 'MLB', logo: 'Logos/MLB/angels.png' },
-  { name: 'Astros', league: 'MLB', logo: 'Logos/MLB/astros.png' },
-  { name: 'Athletics', league: 'MLB', logo: 'Logos/MLB/athletics.png' },
-  { name: 'Bluejays', league: 'MLB', logo: 'Logos/MLB/bluejays.png' },
-  { name: 'Braves', league: 'MLB', logo: 'Logos/MLB/braves.png' },
-  { name: 'Brewers', league: 'MLB', logo: 'Logos/MLB/brewers.png' },
-  { name: 'Cardinals', league: 'MLB', logo: 'Logos/MLB/cardinals.png' },
-  { name: 'Cubs', league: 'MLB', logo: 'Logos/MLB/cubs.png' },
-  { name: 'Diamondbacks', league: 'MLB', logo: 'Logos/MLB/diamondbacks.png' },
-  { name: 'Dodgers', league: 'MLB', logo: 'Logos/MLB/dodgers.png' },
-  { name: 'Giants', league: 'MLB', logo: 'Logos/MLB/giants.png' },
-  { name: 'Indians', league: 'MLB', logo: 'Logos/MLB/indians.png' },
-  { name: 'Mariners', league: 'MLB', logo: 'Logos/MLB/mariners.png' },
-  { name: 'Marlins', league: 'MLB', logo: 'Logos/MLB/marlins.png' },
-  { name: 'Mets', league: 'MLB', logo: 'Logos/MLB/mets.png' },
-  { name: 'Nationals', league: 'MLB', logo: 'Logos/MLB/nationals.png' },
-  { name: 'Orioles', league: 'MLB', logo: 'Logos/MLB/orioles.png' },
-  { name: 'Padres', league: 'MLB', logo: 'Logos/MLB/padres.png' },
-  { name: 'Phillies', league: 'MLB', logo: 'Logos/MLB/phillies.png' },
-  { name: 'Pirates', league: 'MLB', logo: 'Logos/MLB/pirates.png' },
-  { name: 'Rangers', league: 'MLB', logo: 'Logos/MLB/rangers.png' },
-  { name: 'Rays', league: 'MLB', logo: 'Logos/MLB/rays.png' },
-  { name: 'Reds', league: 'MLB', logo: 'Logos/MLB/reds.png' },
-  { name: 'Redsox', league: 'MLB', logo: 'Logos/MLB/redsox.png' },
-  { name: 'Rockies', league: 'MLB', logo: 'Logos/MLB/rockies.png' },
-  { name: 'Royals', league: 'MLB', logo: 'Logos/MLB/royals.png' },
-  { name: 'Tigers', league: 'MLB', logo: 'Logos/MLB/tigers.png' },
-  { name: 'Twins', league: 'MLB', logo: 'Logos/MLB/twins.png' },
-  { name: 'Whitesox', league: 'MLB', logo: 'Logos/MLB/whitesox.png' },
-  { name: 'Yankees', league: 'MLB', logo: 'Logos/MLB/yankees.png' },
+  { name: 'Angels', league: 'MLB', logo: 'Logos/mlb/los-angeles-angels-of-anaheim.svg' },
+  { name: 'Astros', league: 'MLB', logo: 'Logos/mlb/houston-astros.svg' },
+  { name: 'Athletics', league: 'MLB', logo: 'Logos/mlb/oakland-athletics.svg' },
+  { name: 'Blue Jays', league: 'MLB', logo: 'Logos/mlb/toronto-blue-jays.svg' },
+  { name: 'Braves', league: 'MLB', logo: 'Logos/mlb/atlanta-braves.svg' },
+  { name: 'Brewers', league: 'MLB', logo: 'Logos/mlb/milwaukee-brewers.svg' },
+  { name: 'Cardinals', league: 'MLB', logo: 'Logos/mlb/st-louis-cardinals.svg' },
+  { name: 'Cubs', league: 'MLB', logo: 'Logos/mlb/chicago-cubs.svg' },
+  { name: 'Diamondbacks', league: 'MLB', logo: 'Logos/mlb/arizona-diamondbacks.svg' },
+  { name: 'Dodgers', league: 'MLB', logo: 'Logos/mlb/los-angeles-dodgers.svg' },
+  { name: 'Giants', league: 'MLB', logo: 'Logos/mlb/san-francisco-giants.svg' },
+  { name: 'Guardians', league: 'MLB', logo: 'Logos/mlb/cleveland-indians.svg' },
+  { name: 'Mariners', league: 'MLB', logo: 'Logos/mlb/seattle-mariners.svg' },
+  { name: 'Marlins', league: 'MLB', logo: 'Logos/mlb/miami-marlins.svg' },
+  { name: 'Mets', league: 'MLB', logo: 'Logos/mlb/new-york-mets.svg' },
+  { name: 'Nationals', league: 'MLB', logo: 'Logos/mlb/washington-nationals.svg' },
+  { name: 'Orioles', league: 'MLB', logo: 'Logos/mlb/baltimore-orioles.svg' },
+  { name: 'Padres', league: 'MLB', logo: 'Logos/mlb/san-diego-padres.svg' },
+  { name: 'Phillies', league: 'MLB', logo: 'Logos/mlb/philadelphia-phillies.svg' },
+  { name: 'Pirates', league: 'MLB', logo: 'Logos/mlb/pittsburgh-pirates.svg' },
+  { name: 'Rangers', league: 'MLB', logo: 'Logos/mlb/texas-rangers.svg' },
+  { name: 'Rays', league: 'MLB', logo: 'Logos/mlb/tampa-bay-rays.svg' },
+  { name: 'Reds', league: 'MLB', logo: 'Logos/mlb/cincinnati-reds.svg' },
+  { name: 'Red Sox', league: 'MLB', logo: 'Logos/mlb/boston-red-sox.svg' },
+  { name: 'Rockies', league: 'MLB', logo: 'Logos/mlb/colorado-rockies.svg' },
+  { name: 'Royals', league: 'MLB', logo: 'Logos/mlb/kansas-city-royals.svg' },
+  { name: 'Tigers', league: 'MLB', logo: 'Logos/mlb/detroit-tigers.svg' },
+  { name: 'Twins', league: 'MLB', logo: 'Logos/mlb/minnesota-twins.svg' },
+  { name: 'White Sox', league: 'MLB', logo: 'Logos/mlb/chicago-white-sox.svg' },
+  { name: 'Yankees', league: 'MLB', logo: 'Logos/mlb/new-york-yankees.svg' },
 
-  // NCAA Teams (selection of major schools)
-  { name: 'Alabama', league: 'NCAA', logo: 'Logos/NCAA/alabama.png' },
-  { name: 'Auburn', league: 'NCAA', logo: 'Logos/NCAA/auburn.png' },
-  { name: 'Clemson', league: 'NCAA', logo: 'Logos/NCAA/clemson.png' },
-  { name: 'Duke', league: 'NCAA', logo: 'Logos/NCAA/duke.png' },
-  { name: 'Florida', league: 'NCAA', logo: 'Logos/NCAA/florida.png' },
-  { name: 'Georgia', league: 'NCAA', logo: 'Logos/NCAA/georgia.png' },
-  { name: 'Kentucky', league: 'NCAA', logo: 'Logos/NCAA/kentucky.png' },
-  { name: 'Lsu', league: 'NCAA', logo: 'Logos/NCAA/lsu.png' },
-  { name: 'Michigan', league: 'NCAA', logo: 'Logos/NCAA/michigan.png' },
-  { name: 'Northcarolina', league: 'NCAA', logo: 'Logos/NCAA/northcarolina.png' },
-  { name: 'Ohiostate', league: 'NCAA', logo: 'Logos/NCAA/ohiostate.png' },
-  { name: 'Tennessee', league: 'NCAA', logo: 'Logos/NCAA/tennessee.png' },
-  { name: 'Texas', league: 'NCAA', logo: 'Logos/NCAA/texas.png' },
-  { name: 'Ucla', league: 'NCAA', logo: 'Logos/NCAA/ucla.png' },
-  { name: 'Usc', league: 'NCAA', logo: 'Logos/NCAA/usc.png' },
-  { name: 'Stanford', league: 'NCAA', logo: 'Logos/NCAA/stanford.png' },
-  { name: 'Notredame', league: 'NCAA', logo: 'Logos/NCAA/notredame.png' },
-  { name: 'Oklahoma', league: 'NCAA', logo: 'Logos/NCAA/oklahoma.png' },
-  { name: 'Nebraska', league: 'NCAA', logo: 'Logos/NCAA/nebraska.png' },
-  { name: 'Wisconsin', league: 'NCAA', logo: 'Logos/NCAA/wisconsin.png' }
+  // MLS Teams
+  { name: 'Atlanta United', league: 'MLS', logo: 'Logos/mls/atlanta-united-fc.svg' },
+  { name: 'Chicago Fire', league: 'MLS', logo: 'Logos/mls/chicago-fire.svg' },
+  { name: 'Colorado Rapids', league: 'MLS', logo: 'Logos/mls/colorado-rapids.svg' },
+  { name: 'Columbus Crew', league: 'MLS', logo: 'Logos/mls/columbus-crew.svg' },
+  { name: 'FC Dallas', league: 'MLS', logo: 'Logos/mls/fc-dallas.svg' },
+  { name: 'D.C. United', league: 'MLS', logo: 'Logos/mls/dc-united.svg' },
+  { name: 'Houston Dynamo', league: 'MLS', logo: 'Logos/mls/houston-dynamo.svg' },
+  { name: 'LA Galaxy', league: 'MLS', logo: 'Logos/mls/la-galaxy.svg' },
+  { name: 'Minnesota United', league: 'MLS', logo: 'Logos/mls/minnesota-united-fc.svg' },
+  { name: 'CF Montreal', league: 'MLS', logo: 'Logos/mls/montreal-impact.svg' },
+  { name: 'New England Revolution', league: 'MLS', logo: 'Logos/mls/new-england-revolution.svg' },
+  { name: 'New York City FC', league: 'MLS', logo: 'Logos/mls/new-york-city-fc.svg' },
+  { name: 'New York Red Bulls', league: 'MLS', logo: 'Logos/mls/new-york-red-bulls.svg' },
+  { name: 'Orlando City', league: 'MLS', logo: 'Logos/mls/orlando-city-sc.svg' },
+  { name: 'Philadelphia Union', league: 'MLS', logo: 'Logos/mls/philadelphia-union.svg' },
+  { name: 'Portland Timbers', league: 'MLS', logo: 'Logos/mls/portland-timbers.svg' },
+  { name: 'Real Salt Lake', league: 'MLS', logo: 'Logos/mls/real-salt-lake.svg' },
+  { name: 'San Jose Earthquakes', league: 'MLS', logo: 'Logos/mls/san-jose-earthquakes.svg' },
+  { name: 'Seattle Sounders', league: 'MLS', logo: 'Logos/mls/seattle-sounders-fc.svg' },
+  { name: 'Sporting Kansas City', league: 'MLS', logo: 'Logos/mls/sporting-kansas-city.svg' },
+  { name: 'Toronto FC', league: 'MLS', logo: 'Logos/mls/toronto-fc.svg' },
+  { name: 'Vancouver Whitecaps', league: 'MLS', logo: 'Logos/mls/vancouver-whitecaps-fc.svg' },
+
+  // NHL Teams
+  { name: 'Bruins', league: 'NHL', logo: 'Logos/nhl/boston-bruins.svg' },
+  { name: 'Sabres', league: 'NHL', logo: 'Logos/nhl/buffalo-sabres.svg' },
+  { name: 'Red Wings', league: 'NHL', logo: 'Logos/nhl/detroit-red-wings.svg' },
+  { name: 'Panthers', league: 'NHL', logo: 'Logos/nhl/florida-panthers.svg' },
+  { name: 'Canadiens', league: 'NHL', logo: 'Logos/nhl/montreal-canadiens.svg' },
+  { name: 'Senators', league: 'NHL', logo: 'Logos/nhl/ottawa-senators.svg' },
+  { name: 'Lightning', league: 'NHL', logo: 'Logos/nhl/tampa-bay-lightning.svg' },
+  { name: 'Maple Leafs', league: 'NHL', logo: 'Logos/nhl/toronto-maple-leafs.svg' },
+  { name: 'Hurricanes', league: 'NHL', logo: 'Logos/nhl/carolina-hurricanes.svg' },
+  { name: 'Blue Jackets', league: 'NHL', logo: 'Logos/nhl/columbus-blue-jackets.svg' },
+  { name: 'Devils', league: 'NHL', logo: 'Logos/nhl/new-jersey-devils.svg' },
+  { name: 'Islanders', league: 'NHL', logo: 'Logos/nhl/new-york-islanders.svg' },
+  { name: 'Rangers', league: 'NHL', logo: 'Logos/nhl/new-york-rangers.svg' },
+  { name: 'Flyers', league: 'NHL', logo: 'Logos/nhl/philadelphia-flyers.svg' },
+  { name: 'Penguins', league: 'NHL', logo: 'Logos/nhl/pittsburgh-penguins.svg' },
+  { name: 'Capitals', league: 'NHL', logo: 'Logos/nhl/washington-capitals.svg' },
+  { name: 'Blackhawks', league: 'NHL', logo: 'Logos/nhl/chicago-blackhawks.svg' },
+  { name: 'Avalanche', league: 'NHL', logo: 'Logos/nhl/colorado-avalanche.svg' },
+  { name: 'Stars', league: 'NHL', logo: 'Logos/nhl/dallas-stars.svg' },
+  { name: 'Wild', league: 'NHL', logo: 'Logos/nhl/minnesota-wild.svg' },
+  { name: 'Predators', league: 'NHL', logo: 'Logos/nhl/nashville-predators.svg' },
+  { name: 'Blues', league: 'NHL', logo: 'Logos/nhl/st-louis-blues.svg' },
+  { name: 'Jets', league: 'NHL', logo: 'Logos/nhl/winnipeg-jets.svg' },
+  { name: 'Flames', league: 'NHL', logo: 'Logos/nhl/calgary-flames.svg' },
+  { name: 'Oilers', league: 'NHL', logo: 'Logos/nhl/edmonton-oilers.svg' },
+  { name: 'Canucks', league: 'NHL', logo: 'Logos/nhl/vancouver-canucks.svg' },
+  { name: 'Ducks', league: 'NHL', logo: 'Logos/nhl/anaheim-ducks.svg' },
+  { name: 'Kings', league: 'NHL', logo: 'Logos/nhl/los-angeles-kings.svg' },
+  { name: 'Sharks', league: 'NHL', logo: 'Logos/nhl/san-jose-sharks.svg' },
+  { name: 'Golden Knights', league: 'NHL', logo: 'Logos/nhl/vegas-golden-knights.svg' },
+  { name: 'Coyotes', league: 'NHL', logo: 'Logos/nhl/arizona-coyotes.svg' },
+
+  // EPL Teams
+  { name: 'Arsenal', league: 'EPL', logo: 'Logos/epl/arsenal.svg' },
+  { name: 'Aston Villa', league: 'EPL', logo: 'Logos/epl/aston-villa.svg' },
+  { name: 'Brighton', league: 'EPL', logo: 'Logos/epl/brighton-&-hove-albion.svg' },
+  { name: 'Bournemouth', league: 'EPL', logo: 'Logos/epl/afc-bournemouth.svg' },
+  { name: 'Burnley', league: 'EPL', logo: 'Logos/epl/burnley.svg' },
+  { name: 'Chelsea', league: 'EPL', logo: 'Logos/epl/chelsea.svg' },
+  { name: 'Crystal Palace', league: 'EPL', logo: 'Logos/epl/crystal-palace.svg' },
+  { name: 'Everton', league: 'EPL', logo: 'Logos/epl/everton.svg' },
+  { name: 'Huddersfield Town', league: 'EPL', logo: 'Logos/epl/huddersfield-town.svg' },
+  { name: 'Hull City', league: 'EPL', logo: 'Logos/epl/hull-city.svg' },
+  { name: 'Leicester City', league: 'EPL', logo: 'Logos/epl/leicester-city.svg' },
+  { name: 'Liverpool', league: 'EPL', logo: 'Logos/epl/liverpool.svg' },
+  { name: 'Manchester City', league: 'EPL', logo: 'Logos/epl/manchester-city.svg' },
+  { name: 'Manchester United', league: 'EPL', logo: 'Logos/epl/manchester-united.svg' },
+  { name: 'Middlesbrough', league: 'EPL', logo: 'Logos/epl/middlesbrough.svg' },
+  { name: 'Newcastle United', league: 'EPL', logo: 'Logos/epl/newcastle-united.svg' },
+  { name: 'Queens Park Rangers', league: 'EPL', logo: 'Logos/epl/queens-park-rangers.svg' },
+  { name: 'Southampton', league: 'EPL', logo: 'Logos/epl/southampton.svg' },
+  { name: 'Stoke City', league: 'EPL', logo: 'Logos/epl/stoke-city.svg' },
+  { name: 'Sunderland', league: 'EPL', logo: 'Logos/epl/sunderland.svg' },
+  { name: 'Swansea City', league: 'EPL', logo: 'Logos/epl/swansea-city.svg' },
+  { name: 'Tottenham', league: 'EPL', logo: 'Logos/epl/tottenham-hotspur.svg' },
+  { name: 'Watford', league: 'EPL', logo: 'Logos/epl/watford.svg' },
+  { name: 'West Bromwich Albion', league: 'EPL', logo: 'Logos/epl/west-bromwich-albion.svg' },
+  { name: 'West Ham United', league: 'EPL', logo: 'Logos/epl/west-ham-united.svg' }
 ];
 
 // --- Game State ---
@@ -131,7 +193,6 @@ let currentTeam = null;
 let gameTimer = null;
 let usedTeams = [];
 let activeLogos = [];
-const STACK_SIZE = 100; // Increased to 100 for full screen coverage
 const TARGET_SCORE = 100;
 
 // --- High Score Management ---
@@ -296,7 +357,7 @@ function endGame() {
   clearInterval(gameTimer);
   
   if (activeLogos.length === 0) {
-    gameOverMessage.textContent = 'Congratulations! You sorted all 100 logos!';
+    gameOverMessage.textContent = 'Congratulations! You sorted all logos!';
   } else {
     gameOverMessage.textContent = 'Game Over!';
   }
@@ -333,9 +394,12 @@ function populateLogoStack() {
   logoArea.innerHTML = '';
   activeLogos = [];
   
-  for (let i = 0; i < STACK_SIZE; i++) {
-    createLogo(i);
-  }
+  // Remove the 100 logo limit - load all logos
+  const shuffledLogos = shuffleArray([...teams]);
+  
+  shuffledLogos.forEach((team, index) => {
+    createLogo(index);
+  });
 }
 
 function createLogo(index) {
@@ -588,3 +652,28 @@ document.addEventListener('DOMContentLoaded', () => {
   initializeHighScores();
   initializeGame();
 });
+
+// Instructions overlay functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const instructionsOverlay = document.getElementById('instructions-overlay');
+  const startGameBtn = document.getElementById('start-game-btn');
+  
+  // Show instructions overlay on page load
+  instructionsOverlay.style.display = 'flex';
+  
+  // Start game when button is clicked
+  startGameBtn.addEventListener('click', function() {
+    instructionsOverlay.style.display = 'none';
+    loadGame();
+    startTimer();
+  });
+});
+
+// --- Utility Functions ---
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}

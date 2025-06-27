@@ -68,12 +68,12 @@
       left: 50%;
       transform: translate(-50%, -50%);
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
       grid-template-rows: 1fr 1fr;
-      gap: 40px;
+      gap: 25px;
       z-index: 100;
       background: rgba(255, 255, 255, 0.95);
-      padding: 30px;
+      padding: 25px;
       border-radius: 20px;
       backdrop-filter: blur(10px);
       box-shadow: 0 8px 32px rgba(0,0,0,0.1);
@@ -151,13 +151,66 @@
       background: #2563eb;
       box-shadow: 0 4px 16px rgba(59,130,246,0.16);
     }
+    .instructions-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 3000;
+    }
+    .instructions-content {
+      background: rgba(255, 255, 255, 0.98);
+      padding: 40px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      max-width: 500px;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+    .instructions-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #2d3a4b;
+      margin-bottom: 20px;
+    }
+    .instructions-text {
+      font-size: 1.1rem;
+      color: #4a5568;
+      line-height: 1.6;
+      margin-bottom: 25px;
+      text-align: left;
+    }
+    .start-game-btn {
+      padding: 12px 32px;
+      background: #3b82f6;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(59,130,246,0.08);
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    .start-game-btn:hover {
+      background: #2563eb;
+      box-shadow: 0 4px 16px rgba(59,130,246,0.16);
+    }
     @media (max-width: 700px) {
       .game-container {
         max-width: 98vw;
         padding: 10px 2vw 18px 2vw;
       }
       .buckets {
-        flex-direction: column;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
         gap: 14px;
       }
       .bucket {
@@ -170,6 +223,19 @@
 </head>
 <body>
   <div class="game-container">
+    <div class="instructions-overlay" id="instructions-overlay">
+      <div class="instructions-content">
+        <div class="instructions-title">Logo Sort Challenge</div>
+        <div class="instructions-text">
+          • Drag and drop team logos into their correct league buckets<br>
+          • 6 leagues: NFL, NBA, MLB, MLS, NHL, and EPL<br>
+          • All 176 logos will appear on screen at once<br>
+          • Get points for correct placements<br>
+          • Race against the clock!
+        </div>
+        <button class="start-game-btn" id="start-game-btn">Start Game</button>
+      </div>
+    </div>
     <div class="top-bar">
       <div class="timer" id="timer">Time: 0:00</div>
       <div class="score" id="score">Score: 0</div>
@@ -179,16 +245,22 @@
     </div>
     <div class="buckets">
       <div class="bucket" data-league="NFL" id="bucket-nfl">
-        <img src="Logos/NFL/_NFL_logo.png" alt="NFL" class="bucket-logo">
+        <img src="Logos/leagues/nfl.svg" alt="NFL" class="bucket-logo">
       </div>
       <div class="bucket" data-league="NBA" id="bucket-nba">
-        <img src="Logos/NBA/_NBA_logo.png" alt="NBA" class="bucket-logo">
+        <img src="Logos/leagues/nba.svg" alt="NBA" class="bucket-logo">
       </div>
       <div class="bucket" data-league="MLB" id="bucket-mlb">
-        <img src="Logos/MLB/_MLB_logo.png" alt="MLB" class="bucket-logo">
+        <img src="Logos/leagues/mlb.svg" alt="MLB" class="bucket-logo">
       </div>
-      <div class="bucket" data-league="NCAA" id="bucket-ncaa">
-        <img src="Logos/NCAA/_NCAA_logo.png" alt="NCAA" class="bucket-logo">
+      <div class="bucket" data-league="MLS" id="bucket-mls">
+        <img src="Logos/leagues/mls.svg" alt="MLS" class="bucket-logo">
+      </div>
+      <div class="bucket" data-league="NHL" id="bucket-nhl">
+        <img src="Logos/leagues/nhl.svg" alt="NHL" class="bucket-logo">
+      </div>
+      <div class="bucket" data-league="EPL" id="bucket-epl">
+        <img src="Logos/leagues/epl.svg" alt="EPL" class="bucket-logo">
       </div>
     </div>
     <div class="game-over" id="game-over" style="display:none;">

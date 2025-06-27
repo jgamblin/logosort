@@ -334,7 +334,7 @@ function displayLeaderboard() {
 // --- DOM Elements ---
 let logoArea, timerElement, scoreElement, gameOverElement;
 let gameOverMessage, finalScoreElement, playAgainBtn, buckets;
-let mobileCurrentLogo, mobileLogoDisplay, mobileTeamName, mobileBuckets;
+let mobileCurrentLogo, mobileLogoDisplay, mobileBuckets;
 
 // --- Game Functions ---
 function startGame() {
@@ -608,7 +608,6 @@ function updateInstructions() {
 
 // Load mobile game
 function loadMobileGame() {
-  const mobileCurrentLogo = document.getElementById('mobile-current-logo');
   const mobileBucketsContainer = document.getElementById('mobile-buckets');
   
   // Select 4 random leagues
@@ -650,11 +649,9 @@ function showCurrentMobileLogo() {
   const currentLogo = mobileLogos[currentMobileLogoIndex];
   const mobileCurrentLogo = document.getElementById('mobile-current-logo');
   const mobileLogoDisplay = document.getElementById('mobile-logo-display');
-  const mobileTeamName = document.getElementById('mobile-team-name');
   
   mobileLogoDisplay.src = currentLogo.logo;
   mobileLogoDisplay.alt = currentLogo.name;
-  mobileTeamName.textContent = currentLogo.name;
   mobileCurrentLogo.style.display = 'block';
 }
 
@@ -707,7 +704,6 @@ function initializeGame() {
   // Mobile elements
   mobileCurrentLogo = document.getElementById('mobile-current-logo');
   mobileLogoDisplay = document.getElementById('mobile-logo-display');
-  mobileTeamName = document.getElementById('mobile-team-name');
   mobileBuckets = document.querySelectorAll('.mobile-bucket');
 
   // Ensure all elements are found
